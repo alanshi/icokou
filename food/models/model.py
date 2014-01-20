@@ -33,7 +33,7 @@ class food(models.Model):
     #收藏次数
     collects = models.IntegerField(default=0)    
     #菜品图片
-    pic = models.ImageField(u'菜品图片原图', max_length = 100,blank=True, null=True)
+    pic = models.ImageField(u'菜品图片原图',upload_to='upload', max_length = 100,blank=True, null=True)
     
     class Meta:
         app_label = 'food'

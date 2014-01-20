@@ -1,3 +1,4 @@
 syntax: glob
 icokou/settingsDevLocal.py
 *.pyc
+*.sqlite3
