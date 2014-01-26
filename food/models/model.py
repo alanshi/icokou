@@ -34,6 +34,8 @@ class food(models.Model):
     collects = models.IntegerField(default=0)    
     #菜品图片
     pic = models.ImageField(u'菜品图片原图',upload_to='upload', max_length = 100,blank=True, null=True)
+    #位置,地理经纬度坐标
+    location = models.CharField(u'位置', max_length = 50)
     
     class Meta:
         app_label = 'food'
