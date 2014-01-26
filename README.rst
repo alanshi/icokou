@@ -12,6 +12,9 @@
 * shop 商铺模块
 * passort 通行证模块
 * icokouCore 系统核心公用模块
+* geneticMap 基因图谱,系统级和用户级
+* recommendSystem 推荐系统
+* watchDog 看门狗,记录所有网站访问者的行动轨迹
 
 系统构思
 ========
