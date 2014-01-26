@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>icokou-{% block title %}{% endblock %}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon" href="/static/img/favicon.ico">
-</head>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>icokou-{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="/static/img/favicon.ico">
+        <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+        <style>
+            .starter-template {
+                  padding: 40px 15px;
+                  text-align: center;
+                }
+        </style>
+    </head>
 <body>
+
 <!-- 头部 --> 
-{% block header %}{% endblock %}
+{% block header %}
+{%include 'navbar.html'%}
+{% endblock %}
 <!-- 内容 --> 
 {% block content %}{% endblock %}
 <!-- 页脚 --> 
-{% block footer %}{% endblock %}
+{% block footer %}
+{%include 'footer.html'%}
+{% endblock %}
 
 {% if debug %} 
 <!-- 测试环境下不嵌入 Google Analytics --> 
