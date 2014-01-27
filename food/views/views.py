@@ -8,21 +8,21 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import resolve
 
+from food.runtime import foodUtil
 
-#默认首页
-def Index(request):
+#添加菜品
+def AddFood(request):
 
     if request.method == 'GET':
+        pass
+    if request.method == 'POST':
+        pass
+        
+#编辑菜品
+def EditFood(request,fId):
 
-        try:
-            pass
-        except:
-            pass
-        
-        htmlContentDictRoot = {}
-        urlPath = resolve(reverse('food:Index')).namespace
-        
-        return render_to_response('%s/%s' % (urlPath,'index.html') , 
-            htmlContentDictRoot, context_instance=RequestContext(request)
-            )
+    if request.method == 'GET':
+        pass
+    if request.method == 'POST':
+        pass   
   
