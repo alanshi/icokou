@@ -16,7 +16,7 @@
                     <img src="{{foodObj.pic}}" style="width: 300px; height: 300px;" class="img" data-src="holder.js/140x140" alt="140x140">
                     <h2>{{foodObj.name}}</h2>
                     <p>{{foodObj.intro}}</p>
-                    <p><a class="btn btn-default" href="#" role="button">查看详细 »</a></p>
+                    <p><a class="btn btn-default" href="{%url 'food:ViewFood'  foodObj.id %}" role="button">查看详细 »</a></p>
                 </div>
             {%endfor%}
         </div>
