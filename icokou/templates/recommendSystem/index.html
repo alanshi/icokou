@@ -13,7 +13,9 @@
         <div class="row">
             {%for foodObj in foodObjList.obj%}
                 <div class="col-lg-4">
-                    <img src="{{foodObj.pic}}" style="width: 300px; height: 300px;" class="img" data-src="holder.js/140x140" alt="140x140">
+                    <a href="#" class="thumbnail">
+                        <img src="{{foodObj.pic}}" style="width: 350px; height: 350px;" class="img" data-src="holder.js/350x350" alt="350x350">
+                    </a>
                     <h2>{{foodObj.name}}</h2>
                     <p>{{foodObj.intro}}</p>
                     <p><a class="btn btn-default" href="{%url 'food:ViewFood'  foodObj.id %}" role="button">查看详细 »</a></p>
