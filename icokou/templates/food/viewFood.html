@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}查看美食{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+      <div class="jumbotron">
+        <h1>{{food.obj.name}}</h1>
+        <p>{{food.obj.intro}}</p>
+      </div>
+      <div class="starter-template">
+      <img src="{{food.obj.pic}}" width="350" height="350"/>
+      </div>
+ 
+   
+        
+</div>
+
+
+{% endblock %}

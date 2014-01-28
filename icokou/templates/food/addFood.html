@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}添加美食{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+      <blockquote>
+        <h2>分享一个菜品</h2>
+        <p class="lead">您的本次分享能为icokou系统的完善增添一份可贵的力量,同时也将为所有访问icokou的用户提供更多新的菜品信息.</p>
+      </blockquote>
+      
+        <div class="jumbotron">
+        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="{%url 'food:AddFood' %}">{% csrf_token %}
+          <div class="form-group">
+            <label for="foodName" class="col-sm-2 control-label">菜品名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="foodName" name="foodName" placeholder="鱼香肉丝">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="foodMemo" class="col-sm-2 control-label">菜品描述</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" name="foodMemo" placeholder="好吃到飞起!"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">菜品图片</label>
+            <div class="col-sm-10">
+              <input id="foodPic" name="foodPic" type="file">
+            </div>
+          </div>
+          
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-lg btn-success">开始分享</button>
+            </div>
+          </div>
+        </form>
+
+        <p>
+        
+      </div> 
+    
+
+{% endblock %}

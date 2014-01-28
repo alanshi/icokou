@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     #url(r'^admin/', include(admin.site.urls)),
     (r'^$', 'recommendSystem.views.views.Index'),
     (r'^recommendSystem/', include('recommendSystem.urls', namespace='recommendSystem', app_name='recommendSystem')),
+    (r'^food/', include('food.urls', namespace='food', app_name='food')),
+    
 )
 
 if settings.DEBUG is False:   #if DEBUG is True it will be served automatically

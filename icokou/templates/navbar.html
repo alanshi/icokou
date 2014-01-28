@@ -1,6 +1,6 @@
-
+{% block header %}
 <!-- 固定菜单 -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +20,10 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#my">我的账户</a></li>
         <li><a href="#set">设置</a></li>
-        <li class="active"><a href="./">私信(0)</a></li>
+        <li class="active"><a href="#">私信 <span class="badge">42</span></a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
+
+{% endblock %}
