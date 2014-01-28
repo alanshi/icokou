@@ -7,26 +7,37 @@ def AddFood(foodInfo):
     
     try:
 
-    	foodObj = foodModel(
-    		name = 	foodInfo['foodName'],
-    		intro = foodInfo['foodMemo'],
-    		pic = 	foodInfo['foodPic'],
-    		)
-    	foodObj.save()
-    	return foodObj
+        foodObj = foodModel(
+            name =  foodInfo['foodName'],
+            intro = foodInfo['foodMemo'],
+            pic =   foodInfo['foodPic'],
+            )
+        foodObj.save()
+        return foodObj
 
     except Exception as e:
 
-    	raise e
-    	
+        raise e
+
 #获取菜品信息
 def GetFoodById(fId):
 
-	try:
-		foodObj = foodModel.objects.get(id = fId)
-		return foodObj
-	except Exception as e:
-		raise
+    try:
+        foodObj = foodModel.objects.get(id = fId)
+        return foodObj
+    except Exception as e:
+        raise e
+
+#获取随机个数菜品信息
+def GetRandomFoods(randomNum):
+
+    try:
+        #随机获取 基于浏览次数,推荐次数,关注次数和分数
+        foodObjList = foodModel.objects.order_by('?','-hits','-commends','-collects')[:randomNum]
+   
+        return foodObjList
+    except Exception as e:
+        raise e
 #编辑菜品
 def EditFood(fId,foodInfo):
     pass

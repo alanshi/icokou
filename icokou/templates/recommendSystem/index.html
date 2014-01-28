@@ -7,7 +7,18 @@
         <div class="starter-template">
             <h1> Hello iCokou</h1>
             <p class="lead">开启美味新世界.</p>
-            
         </div>
     </div><!-- /.container -->
+    <div class="container marketing">
+        <div class="row">
+            {%for foodObj in foodObjList.obj%}
+                <div class="col-lg-4">
+                    <img src="{{foodObj.pic}}" style="width: 300px; height: 300px;" class="img" data-src="holder.js/140x140" alt="140x140">
+                    <h2>{{foodObj.name}}</h2>
+                    <p>{{foodObj.intro}}</p>
+                    <p><a class="btn btn-default" href="#" role="button">查看详细 »</a></p>
+                </div>
+            {%endfor%}
+        </div>
+    </div>    
 {% endblock %}
