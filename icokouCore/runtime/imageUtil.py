@@ -90,13 +90,7 @@ def MakeSaveFilePath(fileObj,fileType):
     #设置保存文件名
     return os.path.join(filePath,fullFileName),picDBPath
 
-#filter
-def ImageFilter():
-
-    from instagram_filters.filters import *
-
 if __name__=='__main__':
     #MakeSaveFilePath('f.jpg')
     #SavePicFile('f.jpg','food')   
-    ImageFilter()
     pass

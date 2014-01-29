@@ -1,20 +1,31 @@
 {% extends "base.html" %}
-{% block title %}查看美食{% endblock %}
+{% block title %}{{food.obj.name}}{% endblock %}
 
 {% block content %}
 
 <div class="container">
-
-      <div class="jumbotron">
-        <h1>{{food.obj.name}}</h1>
-        <p>{{food.obj.intro}}</p>
-      </div>
-      <div class="starter-template">
-      <img src="{{food.obj.pic}}" width="350" height="350"/>
-      </div>
- 
-   
-        
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img src="{{food.obj.pic}}"  class="thumbnail"/>
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">
+                {{food.obj.name}}: &yen;{{food.obj.price}}
+                <button type="button" class="btn btn-info">
+                  <span class="glyphicon glyphicon-star"></span> 推荐 (121)
+                </button>
+                
+                <button type="button" class="btn btn-info">
+                  <span class="glyphicon glyphicon-heart"></span> 收藏 (321)
+                </button>                   
+                
+          </h2>
+          
+          <hr class="featurette-divider">
+          <p class="lead">{{food.obj.intro}}</p>
+          
+        </div>
+    </div>        
 </div>
 
 
