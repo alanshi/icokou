@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 #coding=utf-8
+
+from icokouCore.runtime import imageUtil
 from food.models.model import food as foodModel
 
 #添加菜品
 def AddFood(foodInfo):
     
     try:
-
+        picName = foodInfo['foodPic'].name
+        picObj = foodInfo['foodPic']
+        foodPic = imageUtil.SavePicFile(picName,picObj,'food')
         foodObj = foodModel(
             name =  foodInfo['foodName'],
             intro = foodInfo['foodMemo'],
-            pic =   foodInfo['foodPic'],
+            pic =   foodPic,
             )
         foodObj.save()
         return foodObj
