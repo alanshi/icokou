@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#coding=utf-8
+
 """
 Django settings for icokou project.
 
@@ -26,6 +29,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#登录账户验证模型
+AUTH_USER_MODEL = 'passport.passport'
+
 
 # Application definition
 
@@ -38,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'food',
     'recommendSystem',
+    'passport',
 )
 
 MIDDLEWARE_CLASSES = (
