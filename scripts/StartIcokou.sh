@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replace these three settings.
-PROJDIR="/home/myxiayi/passport/trunk"
+PROJDIR="/home/alan/icokou/trunk"
 DJANDIR="$PROJDIR"
 PIDFILE="$PROJDIR/icokou.pid"
 SOCKET="$PROJDIR/icokou.sock"
