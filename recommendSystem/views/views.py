@@ -19,6 +19,7 @@ def Index(request):
         try:
             htmlContentDictRoot = {}
             urlPath = resolve(reverse('recommendSystem:Index')).namespace
+            #获取三个默认菜品
             foodObjList = foodUtil.GetRandomFoods(3)
             htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'foodObjList', {'obj':foodObjList})
             return render_to_response('%s/%s' % (urlPath,'index.html') , 
