@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     (r'^$', 'recommendSystem.views.views.Index'),
     (r'^recommendSystem/', include('recommendSystem.urls', namespace='recommendSystem', app_name='recommendSystem')),
     (r'^food/', include('food.urls', namespace='food', app_name='food')),
+    (r'^passport/', include('passport.urls', namespace='passport', app_name='passport')),
     
 )
 

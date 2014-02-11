@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}登录{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form class="form-signin" role="form">
+            <h2 class="form-signin-heading">登录 iCokou</h2>
+            <input type="email" class="form-control" placeholder="用户名" required autofocus>
+            <br/>
+            <input type="password" class="form-control" placeholder="密码" required>
+            <label class="checkbox">
+              <input type="checkbox" value="remember-me"> 记住我
+              &nbsp;<a href="#">注册</a>
+              &nbsp;<a href="#">忘记密码?</a>
+            </label>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        </form>
+
+    </div> 
+
+{% endblock %}
