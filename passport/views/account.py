@@ -11,9 +11,11 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib import auth
 
+from passport.models.model import passport
 from icokouCore.runtime import htmlContent
 from icokouCore.runtime import coreInfo
 from icokouCore.runtime import datetimeTools
+from passport.runtime import passportProfile
 
 
 '''
@@ -80,7 +82,41 @@ def Reg(request):
         return render_to_response('%s/%s' % (urlPath,'reg.html') , 
             htmlContentDictRoot, context_instance=RequestContext(request)
             )
-        
+    if request.method == 'POST':
+
+        try:
+            #获取表单
+            username = request.POST['username']
+            password = request.POST['password']
+            email = request.POST['email']
+
+            #创建htmlContentDictRoot内容
+            htmlContentDictRoot = {}            
+
+            #判断passportId 是否已经注册
+            if passportProfile.IsPassportUserExists(username):
+                htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'您所注册用户名已经存在'}) 
+                raise 
+
+            #创建通行证帐号
+            passportObj = passport.objects.create_user(email,username,password)
+            #设置通行证资料
+            clientIp = coreInfo.GetClientIp(request.META)
+            passportObj.last_login_ip = clientIp
+            passportObj.last_login_time = datetimeTools.GetTimeStamp()
+            passportObj.save()        
+            #自动登录
+            newUser = auth.authenticate(username = username, password = password)
+            auth.login(request, newUser)
+            #跳转页面
+            return HttpResponseRedirect(reverse('recommendSystem:Index'))
+
+        except Exception as e:
+            #返回注册页面
+            urlPath = resolve(reverse('passport:Reg')).namespace
+            #返回页面
+            return render_to_response('error.html' , htmlContentDictRoot, context_instance=RequestContext(request))            
+
 #注销
 def Logout(request):
 

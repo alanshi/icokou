@@ -26,20 +26,22 @@
     </head>
 <body>
 
-<!-- 头部 --> 
-{% block header %}
-{%include 'navbar.html'%}
-{% endblock %}
-<!-- 内容 --> 
-{% block content %}{% endblock %}
-<!-- 页脚 --> 
-{% block footer %}
-{%include 'footer.html'%}
-{% endblock %}
+    <!-- 头部 --> 
+    {% block header %}
+    {%include 'navbar.html'%}
+    {% endblock %}
+<div class="container">
+    <!-- 内容 --> 
+    {% block content %}{% endblock %}
+    <!-- 页脚 --> 
+    {% block footer %}
+    {%include 'footer.html'%}
+    {% endblock %}
 
-{% if debug %} 
-<!-- 测试环境下不嵌入 Google Analytics --> 
-{% else %}
-{% endif %}
+    {% if debug %} 
+    <!-- 测试环境下不嵌入 Google Analytics --> 
+    {% else %}
+    {% endif %}
+</div>
 </body>
 </html>

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">爱可口</a>
+      <a class="navbar-brand" href="#"><img src="{{STATIC_URL}}img/logo.png"/></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -24,7 +24,7 @@
         <li><a href="{%url 'passport:Logout' %}">注销</a></li>
         {%else%}
             <li><a href="{%url 'passport:Login' %}">登录</a></li>
-            <li><a href="#reg">注册</a></li>
+            <li><a href="{%url 'passport:Reg' %}">注册</a></li>
         {%endif%}
       </ul>
     </div><!--/.nav-collapse -->

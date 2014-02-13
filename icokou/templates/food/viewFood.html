@@ -2,8 +2,6 @@
 {% block title %}{{food.obj.name}}{% endblock %}
 
 {% block content %}
-
-<div class="container">
     <div class="row featurette">
         <div class="col-md-5">
             <img src="{{food.obj.pic}}"  class="thumbnail"/>
@@ -25,8 +23,5 @@
           <p class="lead">{{food.obj.intro}}</p>
           
         </div>
-    </div>        
-</div>
-
-
+    </div>
 {% endblock %}
