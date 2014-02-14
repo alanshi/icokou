@@ -17,6 +17,10 @@ def AddFood(foodInfo):
             pic =   foodPic,
             )
         foodObj.save()
+        #判断是否为注册用户添加
+        if foodInfo['createUser'].is_authenticated():
+            foodObj.create_user = foodInfo['createUser']
+            foodObj.save()
         return foodObj
 
     except Exception as e:

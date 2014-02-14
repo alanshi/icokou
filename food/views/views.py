@@ -27,6 +27,9 @@ def AddFood(request):
         foodInfo['foodName'] = request.POST['foodName']
         foodInfo['foodMemo'] = request.POST['foodMemo']
         foodInfo['foodPic'] = request.FILES.get('foodPic', None)
+        #获取当前用户名
+        foodInfo['createUser'] = request.user
+
         foodObj = foodUtil.AddFood(foodInfo)
 
         return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))

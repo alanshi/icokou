@@ -2,6 +2,7 @@
 #coding=utf-8
 
 from django.db import models
+from passport.models.model import passport
 
 """
 菜品
@@ -37,5 +38,56 @@ class food(models.Model):
     #位置,地理经纬度坐标
     lon = models.CharField(u'经度', max_length = 20,blank=True, null=True)
     lat = models.CharField(u'纬度', max_length = 20,blank=True, null=True)
+    #创建人
+    create_user = models.ForeignKey(passport,blank=True, null=True)
+    class Meta:
+        app_label = 'food'
+
+
+
+"""
+    美食推荐日志
+"""
+class commend_food_log(models.Model):
+
+    #访问ip
+    ip = models.CharField(u'ip', max_length=15, blank=True, null=True)
+    #推荐时间
+    add_time= models.DateTimeField(auto_now_add=True)
+    #所推荐的美食
+    food = models.ForeignKey(food)
+    #会员名称
+    passport = models.ForeignKey(passport)
+    #备注
+    memo = models.CharField(u'备注', max_length=20, blank=True, null=True)
+    class Meta:
+        app_label = 'food'
+
+"""
+    美食收藏记录
+"""
+class collects_food_log(models.Model):
+    #美食
+    food = models.ForeignKey(food)
+    #会员名称
+    passport = models.ForeignKey(passport)
+    #添加关注的日期
+    add_time = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        app_label = 'food'
+        
+"""
+    美食浏览日志
+"""
+class view_food_log(models.Model):
+    #访问ip
+    ip = models.CharField(u'ip', max_length=15, blank=True, null=True)
+    #访问时间
+    add_time= models.DateTimeField(auto_now_add=True)
+    #所访问的菜品
+    food = models.ForeignKey(food)
+    #会员名称
+    passport = models.ForeignKey(passport,blank=True, null=True)
+
     class Meta:
         app_label = 'food'

@@ -20,7 +20,7 @@
           </h2>
           <hr class="featurette-divider">
           <div class="panel panel-default">
-              <div class="panel-heading">推荐人 alan 评语:</div>
+              <div class="panel-heading">推荐人 {%if food.obj.create_user%}{{food.obj.create_user}} {%else%} 匿名人士 {%endif%}评语:</div>
               <div class="panel-body">
                <blockquote>{{food.obj.intro}}</blockquote>
                <p><a class="btn btn-danger btn-lg pull-right" role="button">不满意?换一个!</a></p>   
