@@ -33,11 +33,9 @@ class food(models.Model):
     #收藏次数
     collects = models.IntegerField(default=0)    
     #菜品图片
-    #pic = models.ImageField(u'菜品图片原图',upload_to='icokou/static/upload', max_length = 100,blank=True, null=True)odels.ImageField(u'菜品图片原图',upload_to='icokou/static/upload', max_length = 100,blank=True, null=True)
     pic = models.CharField(u'菜品图片', max_length = 100,blank=True, null=True)
-
     #位置,地理经纬度坐标
-    location = models.CharField(u'位置', max_length = 50)
-    
+    lon = models.CharField(u'经度', max_length = 20,blank=True, null=True)
+    lat = models.CharField(u'纬度', max_length = 20,blank=True, null=True)
     class Meta:
         app_label = 'food'
