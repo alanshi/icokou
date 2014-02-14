@@ -3,10 +3,11 @@
 
 {% block content %}
     <div class="row featurette">
-        <div class="col-md-5 ">
+        <div class="col-md-4">
             <img src="{{food.obj.pic}}"  class="thumbnail"/>
         </div>
-        <div class="col-md-7">
+      
+        <div class="col-md-8">
           <h2 class="featurette-heading">
                 {{food.obj.name}}  &yen;{{food.obj.price}}
                 <button type="button" class="btn btn-info">
@@ -19,13 +20,14 @@
           </h2>
           <hr class="featurette-divider">
           <div class="panel panel-default">
-              <div class="panel-heading"><h4>推荐人 alan 评语:</h4></div>
+              <div class="panel-heading">推荐人 alan 评语:</div>
               <div class="panel-body">
                <blockquote>{{food.obj.intro}}</blockquote>
                <p><a class="btn btn-danger btn-lg pull-right" role="button">不满意?换一个!</a></p>   
               </div>
           </div>
         </div>
+
     </div>
     <h2 class="featurette-heading">美食地址:</h2><hr class="featurette-divider">
     {%include 'map/mapPreview.html'%}
