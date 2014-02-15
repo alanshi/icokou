@@ -10,19 +10,23 @@
              
         </div>
     </div><!-- /.container -->
-    <div class="container marketing">
+    
         <div class="row">
             {%for foodObj in foodObjList.obj%}
-                <div class="col-lg-4">
-                    <a href="{%url 'food:ViewFood'  foodObj.id %}" class="thumbnail">
-                        <img src="{{foodObj.pic}}" style="width: 350px; height: 350px;" class="img" data-src="holder.js/350x350" alt="350x350">
-                    </a>
-                    <h2>{{foodObj.name}}</h2>
-                    <p>{{foodObj.intro|truncatechars:26}}</p>
-                    <p><a class="btn btn-default" href="{%url 'food:ViewFood'  foodObj.id %}" role="button">查看详细 »</a></p>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                       <a href="{%url 'food:ViewFood'  foodObj.id %}" >
+                                        <img src="{{foodObj.pic}}" style="width: 350px; height: 350px;" class="img" data-src="holder.js/350x350" alt="350x350">
+                                    </a>
+                      <div class="caption">
+                        <h3>{{foodObj.name}} <span class="pull-right">&yen; {{foodObj.price}}</span></h3>
+                        
+                        <p class="pull-right"><a class="btn btn-default" href="{%url 'food:ViewFood'  foodObj.id %}" role="button">查看详细 »</a></p>
+                        <br/><br/>
+                      </div>
+                    </div>
                 </div>
             {%endfor%}
         </div>
-    </div>  
     
 {% endblock %}
