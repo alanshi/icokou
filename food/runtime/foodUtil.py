@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-from icokouCore.runtime import imageUtil
 from food.models.model import food as foodModel
+from food.models.model import view_food_log as foodViewLogModel
+from food.models.model import commend_food_log as foodCommendLogModel
+from food.models.model import collects_food_log as foodCollectsLogModel
+
+from icokouCore.runtime import imageUtil
+from passport.runtime import passportProfile 
 
 #添加菜品
 def AddFood(foodInfo):
@@ -52,14 +57,88 @@ def GetRandomFoods(randomNum):
 def EditFood(fId,foodInfo):
     pass
 
-#添加菜品浏览记录
-def AddFoodHitLog(fId,pId):
-    pass
+'''
+添加菜品浏览记录
+基于IP，每IP每24小时访问最多添加1次浏览记录(!!!暂未实现)
+'''
+def AddFoodHitLog(fId,passportObj):
+
+    try:
+        #初始化是否能够添加浏览次数的布尔值
+        #isCanAddHits = False
+        #获取菜品基本资料        
+        foodObj = GetFoodById(fId)
+        #菜品浏览日志+1
+        vflObj = foodViewLogModel(
+                food = foodObj,
+                passport = passportObj
+            )
+        vflObj.save()
+        #菜品浏览记录+1
+        foodObj.hits+=1
+        foodObj.save()
+
+    except Exception as e:
+        raise e
+
 
 #添加菜品推荐记录
-def AddFoodCommendLog(fId,pId):
-    pass
+def AddFoodCommendLog(fId,passportObj):
+
+    try:
+        #初始化是否能够添加推荐记录条件
+        isCanCommend = False
+        #获取菜品基本资料
+        foodObj = GetFoodById(fId)
+
+        #查询推荐日志
+        commendCount = foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).count()
+        #如果没有添加推荐记录
+        if commendNum == 0:
+            isCanCommend = True
+        #如果能够添加推荐次数
+        if isCanCommend == True: 
+            #添加菜品推荐记录 
+            fclObj = foodCommendLogModel(
+                    food = foodObj,
+                    passport = passportObj
+                )   
+            fclObj.save()  
+            #菜品推荐次数+1
+            foodObj.commends+=1
+            foodObj.save()    
+            return True
+        return False
+    except Exception as e:
+        raise e
+
 
 #添加菜品收藏记录 
 def AddFoodCollectsLog(fId,pId):
-    pass
+
+    try:
+        #初始化是否能够添加推荐记录条件
+        isCanCollect = False
+        #获取菜品基本资料
+        foodObj = GetFoodById(fId)
+        #查询推荐日志
+        commendCount = foodCollectsLogModel.objects.filter(food=foodObj,passport=passportObj).count()
+        #如果没有添加收藏记录
+        if commendNum == 0:
+            isCanCollect = True
+
+        #如果允许收藏
+        if isCanCollect == True: 
+            #添加菜品收藏记录 
+            fclObj = foodCollectsLogModel(
+                    food = foodObj,
+                    passport = passportObj
+                )   
+            fclObj.save()  
+            #菜品收藏次数+1
+            foodObj.collects+=1
+            foodObj.save()    
+            return True
+        return False
+    except Exception as e:
+        raise e

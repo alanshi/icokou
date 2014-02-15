@@ -30,5 +30,10 @@
 
     </div>
     <h2 class="featurette-heading">美食地址:</h2><hr class="featurette-divider">
-    {%include 'map/mapPreview.html'%}
+    
+    {%if food.obj.lat > '0' and  food.obj.lon > '0' %}
+        {%include 'map/mapPreview.html'%}
+    {%else%}
+        暂无地图!
+    {%endif%}
 {% endblock %}

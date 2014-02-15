@@ -48,6 +48,8 @@ def ViewFood(request,fId):
         foodPic = str(foodObj.pic)
         foodPic = foodPic.replace('icokou','')
         foodObj.pic = foodPic
+        #添加点击次数
+        foodUtil.AddFoodHitLog(fId,request.user)
 
         htmlContentDictRoot = {}
         urlPath = resolve(reverse('food:AddFood')).namespace
