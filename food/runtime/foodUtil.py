@@ -109,7 +109,7 @@ def AddFoodCommendLog(fId,passportObj):
             return True
         return False
     except Exception as e:
-        raise e
+        return False
 
 
 #添加菜品收藏记录 
@@ -134,4 +134,4 @@ def AddFoodCollectsLog(fId,passportObj):
             return True
         return False
     except Exception as e:
-        raise e
+        return False
