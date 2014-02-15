@@ -26,10 +26,15 @@ def AddFood(request):
         foodInfo = {}
         foodInfo['foodName'] = request.POST['foodName']
         foodInfo['foodMemo'] = request.POST['foodMemo']
+        try:
+            foodInfo['foodPrice'] = float(request.POST['foodPrice'])
+        except Exception as e:
+            foodInfo['foodPrice'] = 0.00
+        foodInfo['foodAddress'] = request.POST['foodAddress']
         foodInfo['foodPic'] = request.FILES.get('foodPic', None)
         #获取当前用户名
         foodInfo['createUser'] = request.user
-
+        #添加菜品
         foodObj = foodUtil.AddFood(foodInfo)
 
         return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))

@@ -14,6 +14,8 @@ def AddFood(foodInfo):
         foodObj = foodModel(
             name =  foodInfo['foodName'],
             intro = foodInfo['foodMemo'],
+            price = foodInfo['foodPrice'],
+            address = foodInfo['foodAddress'],
             pic =   foodPic,
             )
         foodObj.save()
@@ -49,4 +51,15 @@ def GetRandomFoods(randomNum):
 #编辑菜品
 def EditFood(fId,foodInfo):
     pass
-    
+
+#添加菜品浏览记录
+def AddFoodHitLog(fId,pId):
+    pass
+
+#添加菜品推荐记录
+def AddFoodCommendLog(fId,pId):
+    pass
+
+#添加菜品收藏记录 
+def AddFoodCollectsLog(fId,pId):
+    pass

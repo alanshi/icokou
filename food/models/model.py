@@ -40,6 +40,8 @@ class food(models.Model):
     lat = models.CharField(u'纬度', max_length = 20,blank=True, null=True)
     #创建人
     create_user = models.ForeignKey(passport,blank=True, null=True)
+    #地址
+    address = models.CharField(u'地址', max_length = 50,blank=True, null=True)
     class Meta:
         app_label = 'food'
 
