@@ -67,12 +67,17 @@ def AddFoodHitLog(fId,passportObj):
         #isCanAddHits = False
         #获取菜品基本资料        
         foodObj = GetFoodById(fId)
+
         #菜品浏览日志+1
         vflObj = foodViewLogModel(
                 food = foodObj,
-                passport = passportObj
             )
         vflObj.save()
+
+        #如果是注册用户浏览
+        if passportObj.is_authenticated():
+            vflObj.passport = passportObj
+
         #菜品浏览记录+1
         foodObj.hits+=1
         foodObj.save()
@@ -93,10 +98,11 @@ def AddFoodCommendLog(fId,passportObj):
         if not foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).exists():
             #添加菜品推荐记录 
             fclObj = foodCommendLogModel(
-                    food = foodObj,
-                    passport = passportObj
+                    food = foodObj,  
+                    passport = passportObj                  
                 )   
-            fclObj.save()  
+            fclObj.save()
+         
             #菜品推荐次数+1
             foodObj.commends+=1
             foodObj.save()    
