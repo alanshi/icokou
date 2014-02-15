@@ -58,6 +58,33 @@ def ViewFood(request,fId):
                 )
         except Exception as e:
             raise Http404
+
+#推荐菜品
+def CommendFood(request,fId):
+
+    if request.method == 'GET':
+
+        try:
+            #添加推荐
+            foodUtil.AddFoodCommendLog(fId,request.user)
+            return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':fId}))
+        except Exception as e:
+            raise Http404
+
+#收藏菜品
+def CollectsFood(request,fId):
+
+
+    if request.method == 'GET':
+
+        try:
+            #添加收藏
+            foodUtil.AddFoodCollectsLog(fId,request.user)
+            return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':fId}))
+
+        except Exception as e:
+            
+            raise Http404
         
 #编辑菜品
 def EditFood(request,fId):

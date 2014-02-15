@@ -107,7 +107,7 @@ def AddFoodCommendLog(fId,passportObj):
 
 
 #添加菜品收藏记录 
-def AddFoodCollectsLog(fId,pId):
+def AddFoodCollectsLog(fId,passportObj):
 
     try:
   

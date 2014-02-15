@@ -10,13 +10,13 @@
         <div class="col-md-8">
           <h2 class="featurette-heading">
                 {{food.obj.name}}  &yen;{{food.obj.price}}
-                <button type="button" class="btn btn-info">
+                <a class="btn btn-info" href="{%url 'food:CommendFood' food.obj.id%}">
                   <span class="glyphicon glyphicon-fire"></span> 推荐 ({{food.obj.commends}})
-                </button>
+                </a>
                 
-                <button type="button" class="btn btn-info">
+                <a class="btn btn-info" href="{%url 'food:CollectsFood' food.obj.id%}">
                   <span class="glyphicon glyphicon-heart"></span> 收藏 ({{food.obj.collects}})
-                </button>                   
+                </a>                   
           </h2>
           <hr class="featurette-divider">
           <div class="panel panel-default">
