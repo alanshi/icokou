@@ -49,7 +49,6 @@ def GetRandomFoods(randomNum):
     try:
         #随机获取 基于浏览次数,推荐次数,关注次数和分数
         foodObjList = foodModel.objects.order_by('?','-hits','-commends','-collects')[:randomNum]
-   
         return foodObjList
     except Exception as e:
         raise e
@@ -86,18 +85,12 @@ def AddFoodHitLog(fId,passportObj):
 def AddFoodCommendLog(fId,passportObj):
 
     try:
-        #初始化是否能够添加推荐记录条件
-        isCanCommend = False
+ 
         #获取菜品基本资料
         foodObj = GetFoodById(fId)
 
-        #查询推荐日志
-        commendCount = foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).count()
-        #如果没有添加推荐记录
-        if commendNum == 0:
-            isCanCommend = True
-        #如果能够添加推荐次数
-        if isCanCommend == True: 
+        #如果允许推荐
+        if not foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).exists()
             #添加菜品推荐记录 
             fclObj = foodCommendLogModel(
                     food = foodObj,
@@ -117,18 +110,12 @@ def AddFoodCommendLog(fId,passportObj):
 def AddFoodCollectsLog(fId,pId):
 
     try:
-        #初始化是否能够添加推荐记录条件
-        isCanCollect = False
+  
         #获取菜品基本资料
         foodObj = GetFoodById(fId)
-        #查询推荐日志
-        commendCount = foodCollectsLogModel.objects.filter(food=foodObj,passport=passportObj).count()
-        #如果没有添加收藏记录
-        if commendNum == 0:
-            isCanCollect = True
-
+        
         #如果允许收藏
-        if isCanCollect == True: 
+        if not foodCollectsLogModel.objects.filter(food=foodObj,passport=passportObj).exists()
             #添加菜品收藏记录 
             fclObj = foodCollectsLogModel(
                     food = foodObj,
