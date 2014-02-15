@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import resolve
+from django.http import Http404
 
 from food.runtime import foodUtil
 from icokouCore.runtime import htmlContent
@@ -44,19 +45,22 @@ def ViewFood(request,fId):
 
     if request.method == 'GET':
 
-        foodObj = foodUtil.GetFoodById(fId)
-        foodPic = str(foodObj.pic)
-        foodPic = foodPic.replace('icokou','')
-        foodObj.pic = foodPic
-        #添加点击次数
-        foodUtil.AddFoodHitLog(fId,request.user)
+        try:
+            foodObj = foodUtil.GetFoodById(fId)
+            foodPic = str(foodObj.pic)
+            foodPic = foodPic.replace('icokou','')
+            foodObj.pic = foodPic
+            #添加点击次数
+            foodUtil.AddFoodHitLog(fId,request.user)
 
-        htmlContentDictRoot = {}
-        urlPath = resolve(reverse('food:AddFood')).namespace
-        htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'food', {'obj':foodObj})
-        return render_to_response('%s/%s' % (urlPath,'viewFood.html') , 
-            htmlContentDictRoot, context_instance=RequestContext(request)
-            )
+            htmlContentDictRoot = {}
+            urlPath = resolve(reverse('food:AddFood')).namespace
+            htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'food', {'obj':foodObj})
+            return render_to_response('%s/%s' % (urlPath,'viewFood.html') , 
+                htmlContentDictRoot, context_instance=RequestContext(request)
+                )
+        except Exception as e:
+            raise Http404
         
 #编辑菜品
 def EditFood(request,fId):

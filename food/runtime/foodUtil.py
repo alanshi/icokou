@@ -90,7 +90,7 @@ def AddFoodCommendLog(fId,passportObj):
         foodObj = GetFoodById(fId)
 
         #如果允许推荐
-        if not foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).exists()
+        if not foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).exists():
             #添加菜品推荐记录 
             fclObj = foodCommendLogModel(
                     food = foodObj,
@@ -113,9 +113,9 @@ def AddFoodCollectsLog(fId,pId):
   
         #获取菜品基本资料
         foodObj = GetFoodById(fId)
-        
+
         #如果允许收藏
-        if not foodCollectsLogModel.objects.filter(food=foodObj,passport=passportObj).exists()
+        if not foodCollectsLogModel.objects.filter(food=foodObj,passport=passportObj).exists():
             #添加菜品收藏记录 
             fclObj = foodCollectsLogModel(
                     food = foodObj,
