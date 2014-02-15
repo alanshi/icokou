@@ -47,9 +47,6 @@ def ViewFood(request,fId):
 
         try:
             foodObj = foodUtil.GetFoodById(fId)
-            foodPic = str(foodObj.pic)
-            foodPic = foodPic.replace('icokou','')
-            foodObj.pic = foodPic
             #添加点击次数
             foodUtil.AddFoodHitLog(fId,request.user)
 
