@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Replace these three settings.
-PROJDIR="/home/alan/icokou/trunk"
-DJANDIR="$PROJDIR"
+PROJDIR="/home/alan/icokou.com/icokou"
+DJANDIR="$PROJDIR/icokou"
 PIDFILE="$PROJDIR/icokou.pid"
 SOCKET="$PROJDIR/icokou.sock"
 
