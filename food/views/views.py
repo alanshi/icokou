@@ -11,6 +11,8 @@ from django.http import Http404
 
 from food.runtime import foodUtil
 from icokouCore.runtime import htmlContent
+from icokouCore.runtime import coreInfo
+
 
 #添加菜品
 def AddFood(request):
@@ -46,9 +48,12 @@ def ViewFood(request,fId):
     if request.method == 'GET':
 
         try:
+            #获取ip地址
+            ipAddr = coreInfo.GetClientIp(request.META)
+            #获取菜品对象
             foodObj = foodUtil.GetFoodById(fId)
             #添加点击次数
-            foodUtil.AddFoodHitLog(fId,request.user)
+            foodUtil.AddFoodHitLog(fId,request.user,ipAddr)
 
             htmlContentDictRoot = {}
             urlPath = resolve(reverse('food:AddFood')).namespace
@@ -65,8 +70,10 @@ def CommendFood(request,fId):
     if request.method == 'GET':
 
         try:
+            #获取ip地址
+            ipAddr = coreInfo.GetClientIp(request.META)
             #添加推荐
-            foodUtil.AddFoodCommendLog(fId,request.user)
+            foodUtil.AddFoodCommendLog(fId,request.user,ipAddr)
             return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':fId}))
         except Exception as e:
             raise Http404

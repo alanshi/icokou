@@ -60,7 +60,7 @@ def EditFood(fId,foodInfo):
 添加菜品浏览记录
 基于IP，每IP每24小时访问最多添加1次浏览记录(!!!暂未实现)
 '''
-def AddFoodHitLog(fId,passportObj):
+def AddFoodHitLog(fId,passportObj,ipAddr):
 
     try:
         #初始化是否能够添加浏览次数的布尔值
@@ -70,6 +70,7 @@ def AddFoodHitLog(fId,passportObj):
 
         #菜品浏览日志+1
         vflObj = foodViewLogModel(
+                ip = ipAddr,
                 food = foodObj,
             )
         vflObj.save()
@@ -87,7 +88,7 @@ def AddFoodHitLog(fId,passportObj):
 
 
 #添加菜品推荐记录
-def AddFoodCommendLog(fId,passportObj):
+def AddFoodCommendLog(fId,passportObj,ipAddr):
 
     try:
  
@@ -98,6 +99,7 @@ def AddFoodCommendLog(fId,passportObj):
         if not foodCommendLogModel.objects.filter(food=foodObj,passport=passportObj).exists():
             #添加菜品推荐记录 
             fclObj = foodCommendLogModel(
+                    ip = ipAddr,
                     food = foodObj,  
                     passport = passportObj                  
                 )   
