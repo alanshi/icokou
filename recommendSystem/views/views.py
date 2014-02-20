@@ -10,6 +10,7 @@ from django.core.urlresolvers import resolve
 
 from food.runtime import foodUtil
 from icokouCore.runtime import htmlContent
+from recommendSystem.runtime import recommendUtil
 
 #默认首页
 def Index(request):
@@ -26,9 +27,14 @@ def Index(request):
                 htmlContentDictRoot, context_instance=RequestContext(request)
                 )
         except Exception as e:
-            pass
-        
-        
-        
+            print e
 
-  
+#不满意?换一个 功能  
+def GetGoodLuckFood(request):
+
+    if request.method == 'GET':
+        try:
+            foodObj = recommendUtil.GetGoodLuckFood()[0]
+            return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
+        except Exception as e:
+            print e        

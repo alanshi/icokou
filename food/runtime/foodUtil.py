@@ -52,6 +52,7 @@ def GetRandomFoods(randomNum):
         return foodObjList
     except Exception as e:
         raise e
+        
 #编辑菜品
 def EditFood(fId,foodInfo):
     pass

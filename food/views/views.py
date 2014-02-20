@@ -62,7 +62,7 @@ def ViewFood(request,fId):
                 htmlContentDictRoot, context_instance=RequestContext(request)
                 )
         except Exception as e:
-            raise Http404
+            print e
 
 #推荐菜品
 def CommendFood(request,fId):

@@ -23,13 +23,13 @@
               <div class="panel-heading">推荐人 {%if food.obj.create_user%}{{food.obj.create_user}} {%else%} 匿名人士 {%endif%}评语:</div>
               <div class="panel-body">
                <blockquote>{{food.obj.intro}}</blockquote>
-               <p><a class="btn btn-danger btn-lg pull-right" role="button">不满意?换一个!</a></p>   
+               <p><a href="{%url 'recommendSystem:GetGoodLuckFood'%}" class="btn btn-danger btn-lg pull-right" role="button">不满意?换一个!</a></p>   
               </div>
           </div>
         </div>
 
     </div>
-    <h2 class="featurette-heading">美食地址:</h2><hr class="featurette-divider">
+    <h3 class="featurette-heading">美食地址: {{food.obj.address}}</h3><hr class="featurette-divider">
     
     {%if food.obj.lat > '0' and  food.obj.lon > '0' %}
         {%include 'map/mapPreview.html'%}
