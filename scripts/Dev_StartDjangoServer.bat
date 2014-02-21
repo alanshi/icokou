@@ -11,6 +11,6 @@ REM 强制删除旧的pyc文件
 del/S *.pyc
 
 REM 基于 settingsDevLocal.py 配置文件启动Django开发服务器
-python manage.py runserver 8000 --settings=icokou.settingsDevLocal
+python manage.py runserver 192.168.199.192:8000 --settings=icokou.settingsDevLocal
 
 pause
