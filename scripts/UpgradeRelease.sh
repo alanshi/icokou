@@ -19,4 +19,4 @@ hg update
 # rebuild static pyData file
 
 # start program
-$PROJDIR/scripts/StartIcokou.sh
+$PROJDIR/icokou/scripts/StartIcokou.sh
