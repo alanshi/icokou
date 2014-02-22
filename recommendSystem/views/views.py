@@ -27,7 +27,11 @@ def Index(request):
                 htmlContentDictRoot, context_instance=RequestContext(request)
                 )
         except Exception as e:
-            print e
+            
+            htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'exception', {'content':e}) 
+
+            return render_to_response('error.html', htmlContentDictRoot, context_instance=RequestContext(request))
+
 
 #不满意?换一个 功能  
 def GetGoodLuckFood(request):
