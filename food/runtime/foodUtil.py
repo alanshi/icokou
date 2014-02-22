@@ -7,7 +7,8 @@ from food.models.model import commend_food_log as foodCommendLogModel
 from food.models.model import collects_food_log as foodCollectsLogModel
 
 from icokouCore.runtime import imageUtil
-from passport.runtime import passportProfile 
+from icokouCore.runtime import coreInfo
+from passport.runtime import passportProfile
 
 #添加菜品
 def AddFood(foodInfo):
@@ -16,12 +17,17 @@ def AddFood(foodInfo):
         picName = foodInfo['foodPic'].name
         picObj = foodInfo['foodPic']
         foodPic = imageUtil.SavePicFile(picName,picObj,'food')
+        address = foodInfo['foodAddress']
+        #转换经纬度坐标
+        lngInfo = coreInfo.GetGeoByAddress(address)
         foodObj = foodModel(
             name =  foodInfo['foodName'],
             intro = foodInfo['foodMemo'],
             price = foodInfo['foodPrice'],
             address = foodInfo['foodAddress'],
             pic =   foodPic,
+            lng = lngInfo['lng'],
+            lat = lngInfo['lat'],
             )
         foodObj.save()
         #判断是否为注册用户添加

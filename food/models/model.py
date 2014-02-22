@@ -36,7 +36,7 @@ class food(models.Model):
     #菜品图片
     pic = models.CharField(u'菜品图片', max_length = 100,blank=True, null=True)
     #位置,地理经纬度坐标
-    lon = models.CharField(u'经度', max_length = 20,blank=True, null=True)
+    lng = models.CharField(u'经度', max_length = 20,blank=True, null=True)
     lat = models.CharField(u'纬度', max_length = 20,blank=True, null=True)
     #创建人
     create_user = models.ForeignKey(passport,blank=True, null=True)
