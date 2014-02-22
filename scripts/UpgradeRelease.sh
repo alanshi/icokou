@@ -2,6 +2,7 @@
 
 # Replace these three settings.
 PROJDIR="/home/alan/icokou.com/icokou"
+DJANDIR="$PROJDIR/icokou"
 PIDFILE="$PROJDIR/icokou.pid"
 SOCKET="$PROJDIR/icokou.sock"
 
@@ -12,11 +13,11 @@ if [ -f $PIDFILE ]; then
 fi
 
 # upgrade program
-cd $PROJDIR
+cd $DJANDIR
 hg pull
 hg update
 
 # rebuild static pyData file
 
 # start program
-$PROJDIR/icokou/scripts/StartIcokou.sh
+$DJANDIR/scripts/StartIcokou.sh
