@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 #coding=utf-8
 import hashlib
+import urllib
+import urllib2
+import json
 
 #获取客户端IP
 def GetClientIp(requestMETA):
@@ -24,8 +27,22 @@ def MD5(pwdStr,upperSwitch=True):
         md5Str = hashlib.md5(pwdStr).hexdigest()
     return md5Str
 
+#根据地址转换经纬度
+def GetGeoByAddress(address):
+    xUrl = 'http://maps.google.com/maps/api/geocode/json?address=%s&language=zh-CN&sensor=false' % (address)
+    xUrl = xUrl.encode('utf8')  
+    reqStr = urllib2.urlopen(xUrl).read()
+    return json.loads(reqStr)['results'][0]['geometry']['bounds']['northeast']
 
+#根据经纬度转换地址
+def GetGeoByLng(lon,lat):
+    xUrl = 'http://maps.google.com/maps/api/geocode/json?latlng=%s,%s&language=zh-CN&sensor=false' % (lon, lat)
+    reqStr = urllib2.urlopen(xUrl).read()
+    return json.loads(reqStr)['results'][0]['formatted_address']
 
 
 if __name__ == '__main__':
-    pass
+    #address =  GetGeoByLng(30.790022932132747,106.08777952190394)
+    #print address
+    lngInfo =  GetGeoByAddress(u'成都市蜀通街')
+    print lngInfo
