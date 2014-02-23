@@ -11,39 +11,45 @@
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="{%url 'food:AddFood' %}">{% csrf_token %}
               <div class="form-group">
                 <label for="foodName" class="col-sm-2 control-label">菜品名称</label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="foodName" name="foodName" placeholder="鱼香肉丝">
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="foodName" name="foodName" placeholder="鱼香肉丝"> 
+                </div>
+                <div class="col-sm-1">
+                    (* 必填项)
                 </div>
               </div>
-              <div class="form-group">
-                <label for="foodPrice" class="col-sm-2 control-label">菜品价格 </label>
-                <div class="col-sm-6">
-                  <input type="number" class="form-control" id="foodPrice" name="foodPrice" placeholder="">
-                </div>
-              </div>              
+              
               <div class="form-group">
                 <label for="foodMemo" class="col-sm-2 control-label">菜品描述</label>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                   <textarea class="form-control" rows="3" name="foodMemo" placeholder="好吃到飞起!"></textarea>
                 </div>
+                <div class="col-sm-1">
+                    (* 必填项)
+                </div>                
               </div>
+              
+            <div class="form-group">
+                <label for="foodPrice" class="col-sm-2 control-label">菜品价格 </label>
+                <div class="col-sm-2">
+                  <input type="number" class="form-control" id="foodPrice" name="foodPrice" placeholder="10"> 
+                </div>              
+              </div>              
+
             <div class="form-group">
                 <label for="foodAddress" class="col-sm-2 control-label">地址</label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <input type="text" class="form-control" id="foodAddress" name="foodAddress" placeholder="">
                 </div>
-              </div>                
-              <div class="form-group">
+              </div> 
+              
+            <div class="form-group">
                 <label for="foodPic" class="col-sm-2 control-label">菜品图片</label>
-                <div class="col-sm-10">
-                  <input id="foodPic" name="foodPic" type="file">
+  
+                <div class="col-sm-3">
+                  <input id="foodPic" name="foodPic" type="file" >
                 </div>
               </div>
-              
-              
-                
-              
-              
               
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-1">
@@ -52,6 +58,4 @@
               </div>
             </form>
       </div> 
-    
-
 {% endblock %}

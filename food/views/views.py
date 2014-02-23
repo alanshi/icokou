@@ -24,23 +24,50 @@ def AddFood(request):
         return render_to_response('%s/%s' % (urlPath,'addFood.html') , 
             htmlContentDictRoot, context_instance=RequestContext(request)
             )
-    if request.method == 'POST':
-        #获取表单信息
-        foodInfo = {}
-        foodInfo['foodName'] = request.POST['foodName']
-        foodInfo['foodMemo'] = request.POST['foodMemo']
-        try:
-            foodInfo['foodPrice'] = float(request.POST['foodPrice'])
-        except Exception as e:
-            foodInfo['foodPrice'] = 0.00
-        foodInfo['foodAddress'] = request.POST['foodAddress']
-        foodInfo['foodPic'] = request.FILES.get('foodPic', None)
-        #获取当前用户名
-        foodInfo['createUser'] = request.user
-        #添加菜品
-        foodObj = foodUtil.AddFood(foodInfo)
 
-        return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
+    if request.method == 'POST':
+        try:
+            #获取表单信息
+            foodInfo = {}
+
+            #创建htmlContentDictRoot内容
+            htmlContentDictRoot = {}
+            htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'nextPage', {'url':reverse('food:AddFood')})
+
+            foodInfo['foodName'] = request.POST['foodName']
+
+            if foodInfo == '':
+                htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'菜品名不允许为空'})
+                raise
+
+            foodInfo['foodMemo'] = request.POST['foodMemo']
+            if foodInfo['foodMemo'] == '':
+                htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'菜品介绍不允许为空'})
+                raise                
+
+            try:
+                foodInfo['foodPrice'] = float(request.POST['foodPrice'])
+            except Exception as e:
+                foodInfo['foodPrice'] = 0.00
+
+            foodInfo['foodAddress'] = request.POST.get('foodAddress',u'未知')
+
+        
+            foodInfo['foodPic'] = request.FILES.get('foodPic', None)
+            if foodInfo['foodPic'] == None:
+                htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'未上传菜品图片'})
+                raise                 
+
+            #获取当前用户名
+            foodInfo['createUser'] = request.user
+            #添加菜品
+            foodObj = foodUtil.AddFood(foodInfo)
+
+            return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
+
+        except Exception as e:
+            htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'exception', {'content':e}) 
+            return render_to_response('error.html', htmlContentDictRoot, context_instance=RequestContext(request))
 
 #查看菜品
 def ViewFood(request,fId):
