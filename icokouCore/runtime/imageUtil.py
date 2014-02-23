@@ -75,8 +75,9 @@ def MakeSaveFilePath(fileObj,fileType):
         sys.path.append(filePath)
     except Exception as e:
         print e
+        
     #拆分扩展名
-    uploadFileNameExt = commonTools.GetFileNameAndExt(fileObj)[1]
+    uploadFileNameExt = commonTools.GetFileNameAndExt(fileObj)[1].lower()
     
     # #设置文件名
     uploadFileName = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
