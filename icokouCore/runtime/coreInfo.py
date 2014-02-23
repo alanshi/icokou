@@ -32,7 +32,7 @@ def GetGeoByAddress(address):
     xUrl = 'http://maps.google.com/maps/api/geocode/json?address=%s&language=zh-CN&sensor=false' % (address)
     xUrl = xUrl.encode('utf8')  
     reqStr = urllib2.urlopen(xUrl).read()
-    return json.loads(reqStr)['results'][0]['geometry']['bounds']['northeast']
+    return json.loads(reqStr)['results'][0]['geometry']['viewport']['northeast']
 
 #根据经纬度转换地址
 def GetGeoByLng(lon,lat):
@@ -44,5 +44,5 @@ def GetGeoByLng(lon,lat):
 if __name__ == '__main__':
     #address =  GetGeoByLng(30.790022932132747,106.08777952190394)
     #print address
-    lngInfo =  GetGeoByAddress(u'成都市蜀通街')
+    lngInfo =  GetGeoByAddress(u'成都市牧电路10号')
     print lngInfo
