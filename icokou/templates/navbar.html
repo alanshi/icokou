@@ -14,7 +14,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">主页</a></li>
-        <li><a href="#food">美食大全</a></li>
+        <li><a href="{%url 'food:SearchFood' "" %}">美食大全</a></li>
         <li><a href="#group">兴趣组</a></li>      
       </ul>
       <form class="navbar-form navbar-left" action="{%url 'food:SearchForm' %}" role="form" method="post">{% csrf_token %}

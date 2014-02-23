@@ -6,7 +6,7 @@
     <div class="container">
         
     </div><!-- /.container -->
-    
+        {%if foodObjList.obj%}
         <div class="row">
             {%for foodObj in foodObjList.obj%}
                 <div class="col-sm-6 col-md-4">
@@ -24,5 +24,15 @@
                 </div>
             {%endfor%}
         </div>
+        {%else%}
+        
+            <div class="panel panel-default">
+              <div class="panel-body">
+              <h4><span class="label label-danger">没有搜索结果,请尝试使用其他关键词试试!</span>  例如: 水煮鱼</h4>
+                
+              </div>
+            </div>
+            
+        {%endif%}
     
 {% endblock %}
