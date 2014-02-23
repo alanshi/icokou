@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="/static/img/favicon.ico">
         <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
         <link href="{{STATIC_URL}}css/signin.css" rel="stylesheet">
+        <link href="{{STATIC_URL}}css/expand.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -17,10 +18,7 @@
             <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->        
         <style>
-            .starter-template {
-                  padding: 20px 15px;
-                  text-align: center;
-                }
+
             
         </style>
     </head>
@@ -33,6 +31,7 @@
 <div class="container">
     <!-- 内容 --> 
     {% block content %}{% endblock %}
+</div>    
     <!-- 页脚 --> 
     {% block footer %}
     {%include 'footer.html'%}
@@ -42,6 +41,6 @@
     <!-- 测试环境下不嵌入 Google Analytics --> 
     {% else %}
     {% endif %}
-</div>
+
 </body>
 </html>
