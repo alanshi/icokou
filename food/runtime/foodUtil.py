@@ -144,3 +144,13 @@ def AddFoodCollectsLog(fId,passportObj):
         return False
     except Exception as e:
         return False
+
+#搜索菜品
+def SearchFood(foodName):
+
+    try:
+        searchResult = foodModel.objects.filter(name__contains = foodName)
+        foodList = searchResult[:9]
+        return foodList
+    except Exception as e:
+        raise e

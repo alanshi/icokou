@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}菜品列表{% endblock %}
+
+{% block content %}
+    
+    <div class="container">
+        
+    </div><!-- /.container -->
+    
+        <div class="row">
+            {%for foodObj in foodObjList.obj%}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                       <a href="{%url 'food:ViewFood'  foodObj.id %}" >
+                                        <img src="{{foodObj.pic}}" style="width: 350px; height: 350px;" class="img" data-src="holder.js/350x350" alt="350x350">
+                                    </a>
+                      <div class="caption">
+                        <h3>{{foodObj.name}} <span class="pull-right">&yen; {{foodObj.price}}</span></h3>
+                        
+                        <p class="pull-right"><a class="btn btn-default" href="{%url 'food:ViewFood'  foodObj.id %}" role="button">查看详细 »</a></p>
+                        <br/><br/>
+                      </div>
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+    
+{% endblock %}

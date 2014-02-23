@@ -9,4 +9,9 @@ urlpatterns = patterns(
     url(regex = r'^(?P<fId>\d+)/view$',view = 'ViewFood', name = 'ViewFood'),
     url(regex = r'^(?P<fId>\d+)/commend$',view = 'CommendFood', name = 'CommendFood'),
     url(regex = r'^(?P<fId>\d+)/collects$',view = 'CollectsFood', name = 'CollectsFood'),
+
+    
+    url(regex = r'^sfrom/$',view = 'SearchForm', name = 'SearchForm'),
+    url(regex = r'^search/(?P<foodName>.*)/$', view='SearchFood', name='SearchFood'),
+    
 )    

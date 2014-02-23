@@ -128,3 +128,28 @@ def EditFood(request,fId):
     if request.method == 'POST':
         pass   
   
+#搜索菜品表单视图
+def SearchForm(request):
+
+    if request.method == 'POST':
+        
+        foodName = request.POST['foodName']
+        return HttpResponseRedirect(reverse('food:SearchFood', kwargs={'foodName':foodName}))
+
+
+#搜索菜品
+def SearchFood(request,foodName=""):
+
+    if request.method == 'GET':
+        
+        try:
+            htmlContentDictRoot = {}
+            urlPath = resolve(reverse('food:AddFood')).namespace
+            foodObjList = foodUtil.SearchFood(foodName)
+            htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'foodObjList', {'obj':foodObjList})
+            return render_to_response('%s/%s' % (urlPath,'foodList.html') , 
+                htmlContentDictRoot, context_instance=RequestContext(request)
+                )            
+
+        except Exception as e:
+            raise e
