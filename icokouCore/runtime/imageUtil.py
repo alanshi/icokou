@@ -9,6 +9,7 @@ except ImportError:
 import os,sys
 import hashlib
 import commonTools
+import qiniuUtil
 
 #切割并保存图片文件
 def CuttingPic(picFile,filePath,sizes=(75, 32)):
@@ -49,6 +50,26 @@ def CuttingPic(picFile,filePath,sizes=(75, 32)):
 
     return filename
 
+#保存图片文件--七牛
+def SavePicFileByQiNiu(fileName,fileObj):
+
+    try:
+        import time
+        
+        #拆分文件扩展名
+        uploadFileNameExt = commonTools.GetFileNameAndExt(fileName)[1].lower()
+        #设置文件名
+        uploadFileName = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+        #拼接路径
+        fullFileName = uploadFileName+uploadFileNameExt        
+        #开始上传
+        qiniuUtil.UploadImageFile(fullFileName,fileObj)
+        
+        return 'http://icokou.qiniudn.com/%s' % (fullFileName)
+
+    except Exception as e:
+        print 'e:',e      
+
 #保存图片文件
 def SavePicFile(fileName,fileObj,fileType):
 
@@ -63,7 +84,7 @@ def SavePicFile(fileName,fileObj,fileType):
         raise  
 
 #构造图片保存地址
-def MakeSaveFilePath(fileObj,fileType):
+def MakeSaveFilePath(fileName,fileType):
     import time
     #返回路径定义
     returnPath = '/static/upload/%s' % (fileType)
@@ -77,7 +98,7 @@ def MakeSaveFilePath(fileObj,fileType):
         print e
         
     #拆分扩展名
-    uploadFileNameExt = commonTools.GetFileNameAndExt(fileObj)[1].lower()
+    uploadFileNameExt = commonTools.GetFileNameAndExt(fileName)[1].lower()
     
     # #设置文件名
     uploadFileName = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))

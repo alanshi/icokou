@@ -16,7 +16,8 @@ def AddFood(foodInfo):
     try:
         picName = foodInfo['foodPic'].name
         picObj = foodInfo['foodPic']
-        foodPic = imageUtil.SavePicFile(picName,picObj,'food')
+        foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
+        #foodPic = imageUtil.SavePicFile(picName,picObj,'food')
         address = foodInfo['foodAddress']
         #转换经纬度坐标
         lngInfo = coreInfo.GetGeoByAddress(address)
