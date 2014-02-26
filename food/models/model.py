@@ -53,7 +53,7 @@ class food(models.Model):
 class commend_food_log(models.Model):
 
     #访问ip
-    ip = models.CharField(u'ip', max_length=15, blank=True, null=True)
+    ip = models.IPAddressField(u'ip', blank=True, null=True)
     #推荐时间
     add_time= models.DateTimeField(auto_now_add=True)
     #所推荐的美食
@@ -83,7 +83,7 @@ class collects_food_log(models.Model):
 """
 class view_food_log(models.Model):
     #访问ip
-    ip = models.CharField(u'ip', max_length=15, blank=True, null=True)
+    ip = models.IPAddressField(u'ip',blank=True, null=True)
     #访问时间
     add_time= models.DateTimeField(auto_now_add=True)
     #所访问的菜品

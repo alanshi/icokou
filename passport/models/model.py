@@ -70,6 +70,8 @@ class passport(AbstractBaseUser):
     last_login_ip = models.IPAddressField(blank=True, null=True)
     #邮箱认证标记
     email_is_verified = models.BooleanField(default=False)
+    #美食基因
+    food_genetic = models.TextField(blank=True, null=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
