@@ -40,9 +40,17 @@ def GetGeoByLng(lon,lat):
     reqStr = urllib2.urlopen(xUrl).read()
     return json.loads(reqStr)['results'][0]['formatted_address']
 
+#根据IP地址查询地理位置
+def GetGeoByIpAddress(ipAddress):
+
+    xUrl = 'http://ip.taobao.com/service/getIpInfo.php?ip=%s' % (ipAddress)
+    reqStr = urllib2.urlopen(xUrl).read()
+    return json.loads(reqStr)   
 
 if __name__ == '__main__':
     #address =  GetGeoByLng(30.790022932132747,106.08777952190394)
     #print address
-    lngInfo =  GetGeoByAddress(u'成都市牧电路10号')
-    print lngInfo
+    # lngInfo =  GetGeoByAddress(u'成都市新南路88号附5号')
+    # print lngInfo
+    geoInfo = GetGeoByIpAddress('182.118.25.224')
+    print geoInfo['data']['city']

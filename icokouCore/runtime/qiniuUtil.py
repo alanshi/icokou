@@ -32,6 +32,8 @@ def UploadImageFile(fileName,fileObj):
 
 if __name__=='__main__':
 
+    import StringIO
+
     fileObj = StringIO.StringIO("hello!")
 
     UploadImageFile('test.txt',fileObj)

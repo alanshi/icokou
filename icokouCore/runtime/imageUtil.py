@@ -114,5 +114,8 @@ def MakeSaveFilePath(fileName,fileType):
 
 if __name__=='__main__':
     #MakeSaveFilePath('f.jpg')
-    #SavePicFile('f.jpg','food')   
+    #SavePicFile('f.jpg','food') 
+    import StringIO
+    fileObj = StringIO.StringIO("hello!")
+    SavePicFileByQiNiu('test.txt',fileObj)  
     pass

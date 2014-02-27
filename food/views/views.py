@@ -50,8 +50,11 @@ def AddFood(request):
             except Exception as e:
                 foodInfo['foodPrice'] = 0.00
 
-            foodInfo['foodAddress'] = u'成都'
-            foodInfo['foodAddress'] = request.POST['foodAddress']
+            foodInfo['foodAddress'] = None
+            try:
+                foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
+            except Exception as e:
+                foodInfo['foodAddress'] = u'成都'
 
         
             foodInfo['foodPic'] = request.FILES.get('foodPic', None)
@@ -67,7 +70,7 @@ def AddFood(request):
             return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
 
         except Exception as e:
-            
+
             htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'exception', {'content':e}) 
             return render_to_response('error.html', htmlContentDictRoot, context_instance=RequestContext(request))
 
