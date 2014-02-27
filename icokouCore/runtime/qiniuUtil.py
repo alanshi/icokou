@@ -25,6 +25,13 @@ def UploadImageFile(fileName,fileObj):
 
     if err is not None:
         sys.stderr.write('error: %s ' % err)
+        print err
         return err
 
-    return ret,err    
+    return ret
+
+if __name__=='__main__':
+
+    fileObj = StringIO.StringIO("hello!")
+
+    UploadImageFile('test.txt',fileObj)
