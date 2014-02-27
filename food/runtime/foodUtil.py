@@ -16,11 +16,20 @@ def AddFood(foodInfo):
     try:
         picName = foodInfo['foodPic'].name
         picObj = foodInfo['foodPic']
-        foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
-        #foodPic = imageUtil.SavePicFile(picName,picObj,'food')
+        #上传菜品图片并获取返回路径
+        #foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
+        foodPic = imageUtil.SavePicFile(picName,picObj,'food')
+        #获取菜品所在地理地址
         address = foodInfo['foodAddress']
         #转换经纬度坐标
         lngInfo = coreInfo.GetGeoByAddress(address)
+        #获取来路IP所对应的城市名和城市id
+        ipAddress = foodInfo['ipAddress']
+        geoInfo = coreInfo.GetGeoByIpAddress(ipAddress)
+
+        cityId = geoInfo['data']['city_id']
+        cityName = geoInfo['data']['city']
+
         foodObj = foodModel(
             name =  foodInfo['foodName'],
             intro = foodInfo['foodMemo'],
@@ -29,6 +38,8 @@ def AddFood(foodInfo):
             pic =   foodPic,
             lng = lngInfo['lng'],
             lat = lngInfo['lat'],
+            city_id = cityId,
+            city_name = cityName,
             )
         foodObj.save()
         #判断是否为注册用户添加

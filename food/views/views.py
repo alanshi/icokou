@@ -64,6 +64,8 @@ def AddFood(request):
 
             #获取当前用户名
             foodInfo['createUser'] = request.user
+            #获取IP地址
+            foodInfo['ipAddress'] = coreInfo.GetClientIp(request.META)
             #添加菜品
             foodObj = foodUtil.AddFood(foodInfo)
 
