@@ -67,7 +67,7 @@ def AddFood(request):
             return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
 
         except Exception as e:
-            print 'e:',e
+            
             htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'exception', {'content':e}) 
             return render_to_response('error.html', htmlContentDictRoot, context_instance=RequestContext(request))
 

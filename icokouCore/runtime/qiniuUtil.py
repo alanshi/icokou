@@ -1,18 +1,6 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-
-
-
-# #extra.mime_type = "image/jpg"
-
-
-# #data = Image.open('xxx.jpg')
-# fileName = r'D:\\__WORK__\\icokounew\\icokouCore\\runtime\\xxx.jpg'
-# #ret, err = qiniu.io.put(uptoken, 'xxx.jpg', data, extra)
-# ret, err = qiniu.io.put_file(uptoken, 'xx.jpg', fileName)
-
-
 #上传图片文件
 def UploadImageFile(fileName,fileObj):
     
@@ -33,13 +21,10 @@ def UploadImageFile(fileName,fileObj):
     extra = qiniu.io.PutExtra()
 
     #开始上传
-    #fileName = r'D:\\__WORK__\\icokounew\\icokouCore\\runtime\\xxx.jpg'
     ret, err = qiniu.io.put(uptoken, fileName, fileObj, extra)
-    
-    #ret, err = qiniu.io.put_file(uptoken, 'xx.jpg', fileName)
 
-    print ret
-    print err    
+    if err is not None:
+        sys.stderr.write('error: %s ' % err)
+        return err
 
-
-#UploadImageFile('xxx','xxx')
+    return ret,err    

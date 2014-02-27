@@ -63,12 +63,12 @@ def SavePicFileByQiNiu(fileName,fileObj):
         #拼接路径
         fullFileName = uploadFileName+uploadFileNameExt        
         #开始上传
-        qiniuUtil.UploadImageFile(fullFileName,fileObj)
+        ret = qiniuUtil.UploadImageFile(fullFileName,fileObj)
         
         return 'http://icokou.qiniudn.com/%s' % (fullFileName)
 
     except Exception as e:
-        print 'e:',e      
+        raise e     
 
 #保存图片文件
 def SavePicFile(fileName,fileObj,fileType):
