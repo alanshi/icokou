@@ -2,12 +2,12 @@
 <div id="mapholder" class="thumbnail"></div>
 <script type="text/javascript">  
 
-      lat = {{food.obj.lat}};//position.coords.latitude;
-      lon = {{food.obj.lng}};//position.coords.longitude;
-      latlon = new google.maps.LatLng(lat, lon);
-      mapholder = document.getElementById('mapholder');
+      var lat = {{food.obj.lat}};//position.coords.latitude;
+      var lon = {{food.obj.lng}};//position.coords.longitude;
+      var latlon = new google.maps.LatLng(lat, lon);
+      var mapholder = document.getElementById('mapholder');
       mapholder.style.height='250px';
-      mapholder.style.width='280px';
+      mapholder.style.width='100%';
 
       var myOptions = {
         center:latlon,zoom:14,
