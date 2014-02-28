@@ -81,36 +81,41 @@ def SavePicFile(fileName,fileObj,fileType):
             return filePath[1]
 
     except Exception as e:
-        raise  
+        print 'e:',e
+        raise  e
 
 #构造图片保存地址
 def MakeSaveFilePath(fileName,fileType):
-    import time
-    #返回路径定义
-    returnPath = '/static/upload/%s' % (fileType)
-    BaseDir = os.path.dirname(__file__)
-    #获取文件目录
-    filePath = os.path.abspath(os.path.join(BaseDir,os.path.pardir,os.path.pardir,'icokou%s' % (returnPath)))
-    #添加到sys.path
     try:
-        sys.path.append(filePath)
-    except Exception as e:
-        print e
+        import time
+        #返回路径定义
+        returnPath = '/static/upload/%s' % (fileType)
+        BaseDir = os.path.dirname(__file__)
+        #获取文件目录
+        filePath = os.path.abspath(os.path.join(BaseDir,os.path.pardir,os.path.pardir,'icokou%s' % (returnPath)))
+        #添加到sys.path
+        try:
+            sys.path.append(filePath)
+        except Exception as e:
+            print e
+            
+        #拆分扩展名
+        uploadFileNameExt = commonTools.GetFileNameAndExt(fileName)[1].lower()
         
-    #拆分扩展名
-    uploadFileNameExt = commonTools.GetFileNameAndExt(fileName)[1].lower()
-    
-    # #设置文件名
-    uploadFileName = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+        # #设置文件名
+        uploadFileName = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
 
-    #拼接路径
-    fullFileName = uploadFileName+uploadFileNameExt
+        #拼接路径
+        fullFileName = uploadFileName+uploadFileNameExt
 
-    #返回路径
-    picDBPath = '%s/%s' %(returnPath,fullFileName)
+        #返回路径
+        picDBPath = '%s/%s' %(returnPath,fullFileName)
 
-    #设置保存文件名
-    return os.path.join(filePath,fullFileName),picDBPath
+        #设置保存文件名
+        return os.path.join(filePath,fullFileName),picDBPath
+    except Exception as e:
+        print 'e:',e
+        raise e
 
 if __name__=='__main__':
     #MakeSaveFilePath('f.jpg')

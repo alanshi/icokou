@@ -36,6 +36,8 @@ def AddFood(request):
 
             foodInfo['foodName'] = request.POST['foodName']
 
+
+
             if foodInfo == '':
                 htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'菜品名不允许为空'})
                 raise
@@ -50,22 +52,23 @@ def AddFood(request):
             except Exception as e:
                 foodInfo['foodPrice'] = 0.00
 
-            foodInfo['foodAddress'] = None
+            foodInfo['foodAddress'] = ''
             try:
                 foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
             except Exception as e:
                 foodInfo['foodAddress'] = u'成都'
 
-        
-            foodInfo['foodPic'] = request.FILES.get('foodPic', None)
+            foodInfo['foodPic'] = request.FILES.get('foodPic')
             if foodInfo['foodPic'] == None:
                 htmlContentDictRoot = htmlContent.CreateHtmlContentDict(htmlContentDictRoot,'error', {'content':u'未上传菜品图片'})
-                raise                 
+                raise
 
             #获取当前用户名
             foodInfo['createUser'] = request.user
+
             #获取IP地址
             foodInfo['ipAddress'] = coreInfo.GetClientIp(request.META)
+            
             #添加菜品
             foodObj = foodUtil.AddFood(foodInfo)
 

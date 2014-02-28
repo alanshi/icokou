@@ -17,8 +17,8 @@ def AddFood(foodInfo):
         picName = foodInfo['foodPic'].name
         picObj = foodInfo['foodPic']
         #上传菜品图片并获取返回路径
-        #foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
-        foodPic = imageUtil.SavePicFile(picName,picObj,'food')
+        foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
+        #foodPic = imageUtil.SavePicFile(picName,picObj,'food')
         #获取菜品所在地理地址
         address = foodInfo['foodAddress']
         #转换经纬度坐标
@@ -49,7 +49,6 @@ def AddFood(foodInfo):
         return foodObj
 
     except Exception as e:
-
         raise e
 
 #获取菜品信息
