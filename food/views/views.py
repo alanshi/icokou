@@ -52,11 +52,27 @@ def AddFood(request):
             except Exception as e:
                 foodInfo['foodPrice'] = 0.00
 
+            foodInfo['lat'] = ''
+            foodInfo['lng'] = ''
             foodInfo['foodAddress'] = ''
+            lngInfo = {}
+       
             try:
-                foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
+                foodInfo['lat'] = request.POST['addFoodLat']
+                foodInfo['lng'] = request.POST['addFoodLng']
+                #如果客户端有传回经纬度坐标,优先处理
+                if (foodInfo['lat'] != '') and (foodInfo['lng'] != ''):
+                    lngInfo['lat'] = foodInfo['lat']
+                    lngInfo['lng'] = foodInfo['lng']
+
+                #否则按地址反查坐标
+                else:
+                    foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
+                    #转换经纬度坐标
+                    lngInfo = coreInfo.GetGeoByAddress(foodInfo['foodAddress'])
             except Exception as e:
                 foodInfo['foodAddress'] = u'成都'
+                lngInfo = coreInfo.GetGeoByAddress(foodInfo['foodAddress'])
 
             foodInfo['foodPic'] = request.FILES.get('foodPic')
             if foodInfo['foodPic'] == None:
@@ -70,7 +86,7 @@ def AddFood(request):
             foodInfo['ipAddress'] = coreInfo.GetClientIp(request.META)
             
             #添加菜品
-            foodObj = foodUtil.AddFood(foodInfo)
+            foodObj = foodUtil.AddFood(foodInfo,lngInfo)
 
             return HttpResponseRedirect(reverse('food:ViewFood', kwargs={'fId':foodObj.id}))
 

@@ -14,9 +14,13 @@ function getLocation()
 function getPosition(position)
 {
     var lat = position.coords.latitude;
-    var lon = position.coords.longitude;    
-    var latlon = position.coords.latitude+","+position.coords.longitude;
-    return latlon;
+    var lng = position.coords.longitude;    
+    var addFoodLat = document.getElementById('addFoodLat');
+    var addFoodLng = document.getElementById('addFoodLng');
+    //var latlon = position.coords.latitude+","+position.coords.longitude;
+    addFoodLat.value = lat;
+    addFoodLng.value = lng;
+    //return latlon;
 }
 //错误处理
 function showError(error)

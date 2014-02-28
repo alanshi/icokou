@@ -11,7 +11,7 @@ from icokouCore.runtime import coreInfo
 from passport.runtime import passportProfile
 
 #添加菜品
-def AddFood(foodInfo):
+def AddFood(foodInfo,lngInfo):
     
     try:
         picName = foodInfo['foodPic'].name
@@ -20,9 +20,9 @@ def AddFood(foodInfo):
         foodPic = imageUtil.SavePicFileByQiNiu(picName,picObj)
         #foodPic = imageUtil.SavePicFile(picName,picObj,'food')
         #获取菜品所在地理地址
-        address = foodInfo['foodAddress']
+        #address = foodInfo['foodAddress']
         #转换经纬度坐标
-        lngInfo = coreInfo.GetGeoByAddress(address)
+        #lngInfo = coreInfo.GetGeoByAddress(address)
         #获取来路IP所对应的城市名和城市id
         ipAddress = foodInfo['ipAddress']
         geoInfo = coreInfo.GetGeoByIpAddress(ipAddress)
