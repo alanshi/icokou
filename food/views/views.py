@@ -59,10 +59,11 @@ def AddFood(request):
             lngInfo = {}
        
             try:
+                foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
                 foodInfo['lat'] = request.POST['addFoodLat']
                 foodInfo['lng'] = request.POST['addFoodLng']
                 #如果客户端有传回经纬度坐标,优先处理
-                if (foodInfo['lat'] != '') and (foodInfo['lng'] != ''):
+                if (foodInfo['lat'] != '') and (foodInfo['lng'] != '') and (foodInfo['foodAddress'] == ''):
                     #经纬度纠偏
                     latLng = geo.transform(float(foodInfo['lat']),float(foodInfo['lng']))
                     
@@ -73,7 +74,7 @@ def AddFood(request):
                     
                 #否则按地址反查坐标
                 else:
-                    foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
+                    
                     #转换经纬度坐标
                     lngInfo = coreInfo.GetGeoByAddress(foodInfo['foodAddress'])
                     #经纬度纠偏
