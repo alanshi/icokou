@@ -35,10 +35,13 @@ def GetGeoByAddress(address):
     return json.loads(reqStr)['results'][0]['geometry']['viewport']['northeast']
 
 #根据经纬度转换地址
-def GetGeoByLng(lon,lat):
-    xUrl = 'http://maps.google.com/maps/api/geocode/json?latlng=%s,%s&language=zh-CN&sensor=false' % (lon, lat)
-    reqStr = urllib2.urlopen(xUrl).read()
-    return json.loads(reqStr)['results'][0]['formatted_address']
+def GetGeoByLng(lng,lat):
+    try:
+        xUrl = 'http://maps.google.com/maps/api/geocode/json?latlng=%s,%s&language=zh-CN&sensor=false' % (lng, lat)
+        reqStr = urllib2.urlopen(xUrl).read()
+        return json.loads(reqStr)['results'][0]['formatted_address']
+    except Exception as e:
+        return ''
 
 #根据IP地址查询地理位置
 def GetGeoByIpAddress(ipAddress):
@@ -50,7 +53,7 @@ def GetGeoByIpAddress(ipAddress):
 if __name__ == '__main__':
     #address =  GetGeoByLng(30.790022932132747,106.08777952190394)
     #print address
-    # lngInfo =  GetGeoByAddress(u'成都市新南路88号附5号')
-    # print lngInfo
-    geoInfo = GetGeoByIpAddress('182.118.25.224')
-    print geoInfo['data']['city']
+    lngInfo =  GetGeoByAddress(u'成都市祥和里1号')
+    print lngInfo
+    #geoInfo = GetGeoByIpAddress('182.118.25.224')
+    #print geoInfo['data']['city']

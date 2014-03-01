@@ -12,6 +12,7 @@ from django.http import Http404
 from food.runtime import foodUtil
 from icokouCore.runtime import htmlContent
 from icokouCore.runtime import coreInfo
+from icokouCore.runtime import geo
 
 
 #添加菜品
@@ -62,15 +63,26 @@ def AddFood(request):
                 foodInfo['lng'] = request.POST['addFoodLng']
                 #如果客户端有传回经纬度坐标,优先处理
                 if (foodInfo['lat'] != '') and (foodInfo['lng'] != ''):
-                    lngInfo['lat'] = foodInfo['lat']
-                    lngInfo['lng'] = foodInfo['lng']
-
+                    #经纬度纠偏
+                    latLng = geo.transform(float(foodInfo['lat']),float(foodInfo['lng']))
+                    
+                    lngInfo['lat'] = latLng[0]
+                    lngInfo['lng'] = latLng[1]
+                    
+                    foodInfo['foodAddress'] = coreInfo.GetGeoByLng(latLng[0],latLng[1])
+                    
                 #否则按地址反查坐标
                 else:
                     foodInfo['foodAddress'] = request.POST['foodAddress'].strip()
                     #转换经纬度坐标
                     lngInfo = coreInfo.GetGeoByAddress(foodInfo['foodAddress'])
+                    #经纬度纠偏
+                    latLng = geo.transform(float(lngInfo['lat']),float(lngInfo['lng']))
+                    lngInfo['lat'] = latLng[0]
+                    lngInfo['lng'] = latLng[1]
+
             except Exception as e:
+
                 foodInfo['foodAddress'] = u'成都'
                 lngInfo = coreInfo.GetGeoByAddress(foodInfo['foodAddress'])
 
